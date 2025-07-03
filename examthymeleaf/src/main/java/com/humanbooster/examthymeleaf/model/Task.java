@@ -6,16 +6,14 @@ public class Task {
     private String title;
     private TaskStatus status;
     private User assignee;
-    private Long projectId;
     
     public Task() {}
     
-    public Task(Long id, String title, TaskStatus status, User assignee, Long projectId) {
+    public Task(Long id, String title, TaskStatus status, User assignee) {
         this.id = id;
         this.title = title;
         this.status = status;
         this.assignee = assignee;
-        this.projectId = projectId;
     }
     
     // Getters et Setters
@@ -51,13 +49,6 @@ public class Task {
         this.assignee = assignee; 
     }
     
-    public Long getProjectId() { 
-        return projectId; 
-    }
-    
-    public void setProjectId(Long projectId) { 
-        this.projectId = projectId; 
-    }
     
     public String getAssigneeName() {
         return assignee != null ? assignee.getUsername() : "Non assigné";

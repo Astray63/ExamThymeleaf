@@ -1,110 +1,23 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets - Gestion de Tâches</title>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <div>
-            <a href="/">Gestion de Tâches</a>
-            <div>
-                <a href="/">Accueil</a>
-                <a href="/users">Utilisateurs</a>
-                <a href="/projects">Projets</a>
-                <a href="/projects/create">Nouveau Projet</a>
-            </div>
+<div th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Liste des Projets</h2>
+            <a href="/create-project" class="btn btn-sm btn-primary">Nouveau Projet</a>
         </div>
-    </nav>
-
-    <div th:replace="layout :: layout(~{::content})">
-        <div th:fragment="content">
-            <!-- Header -->
-            <div>
-                <h1>Liste des projets</h1>
-                <a href="/projects/create">Nouveau Projet</a>
-            </div>
-
-            <!-- Messages Flash -->
-            <div th:if="${success}">
-                <span th:text="${success}"></span>
-            </div>
-
-            <!-- Liste des projets -->
-            <div th:if="${#lists.isEmpty(projects)}">
-                <h3>Aucun projet trouvé</h3>
-                <p>Commencez par créer votre premier projet</p>
-                <a href="/projects/create">Créer un projet</a>
-            </div>
-
-            <div th:if="${!#lists.isEmpty(projects)}">
-                <div th:each="project : ${projects}">
-                    <div>
-                        <div>
-                            <h5><span th:text="${project.name}">Nom du projet</span></h5>
+        
+        <div class="card-body">
+            <div class="row">
+                <div th:each="project : ${projects}" class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${project.name}"></h5>
                         </div>
-                        <div>
-                            <div>
-                                <span>Créé par:</span>
-                                <span th:text="${project.creatorName}">Créateur</span>
-                            </div>
-                            <div>
-                                <span>Nombre de tâches:</span>
-                                <span th:text="${project.taskCount}">0</span>
-                                <span>tâche(s)</span>
-                            </div>
-                        </div>
-                        <div>
-                            <a th:href="@{/projects/{id}(id=${project.id})}">Détails</a>
-                            <button type="button" th:data-bs-target="'#deleteModal' + ${project.id}">Supprimer</button>
-                        </div>
-                    </div>
-
-                    <!-- Modal de confirmation de suppression -->
-                    <div th:id="'deleteModal' + ${project.id}">
-                        <div>
-                            <div>
-                                <h5>Confirmer la suppression</h5>
-                                <button type="button">Fermer</button>
-                            </div>
-                            <div>
-                                <p>Êtes-vous sûr de vouloir supprimer le projet <strong th:text="${project.name}">Nom du projet</strong> ?</p>
-                                <p>Cette action supprimera également toutes les tâches associées.</p>
-                            </div>
-                            <div>
-                                <button type="button">Annuler</button>
-                                <form th:action="@{/projects/{id}/delete(id=${project.id})}" method="post">
-                                    <button type="submit">Supprimer</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Statistiques -->
-            <div th:if="${!#lists.isEmpty(projects)}">
-                <div>
-                    <h5>Statistiques des projets</h5>
-                    <div>
-                        <div>
-                            <h3 th:text="${#lists.size(projects)}">0</h3>
-                            <span>Total des projets</span>
-                        </div>
-                        <div>
-                            <h3 th:text="${#aggregates.sum(projects.![taskCount])}">0</h3>
-                            <span>Total des tâches</span>
-                        </div>
-                        <div>
-                            <h3 th:text="${#sets.size(#sets.toSet(projects.![creator.username]))}">0</h3>
-                            <span>Créateurs uniques</span>
+                        <div class="card-footer">
+                            <a th:href="@{/project-details/{id}(id=${project.id})}" class="btn btn-sm btn-outline-primary">Voir détails</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>

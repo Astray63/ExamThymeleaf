@@ -58,11 +58,11 @@
                 <h3 th:text="${task.title}">Titre de la tâche</h3>
                 <p><strong>Statut :</strong> <span th:text="${task.statusDisplayName}">Statut</span></p>
                 <p><strong>Assigné à :</strong> <span th:text="${task.assigneeName}">Assigné</span></p>
-                <form th:action="@{/tasks/{id}/next-status(id=${task.id})}" method="post">
+                <form th:action="@{/tasks/{id}/update-status(id=${task.id})}" method="post">
                     <input type="hidden" name="projectId" th:value="${project.id}">
-                    <button type="submit">Passer au statut suivant</button>
+                    <button type="submit" th:text="${'Statut: ' + task.status.toString() + ' → Suivant'}">Passer au statut suivant</button>
                 </form>
-                <button type="button" th:attr="onclick='document.getElementById(\'deleteTaskModal' + [[${task.id}]] + '\').style.display=\'block\''">
+                <button type="button" th:onclick="'document.getElementById(\'deleteTaskModal' + ${task.id} + '\').style.display=\'block\''">
                     Supprimer
                 </button>
 
@@ -72,7 +72,7 @@
                     <form th:action="@{/tasks/{id}/delete(id=${task.id})}" method="post">
                         <input type="hidden" name="projectId" th:value="${project.id}">
                         <button type="submit">Supprimer</button>
-                        <button type="button" th:attr="onclick='document.getElementById(\'deleteTaskModal' + [[${task.id}]] + '\').style.display=\'none\''">
+                        <button type="button" th:onclick="'document.getElementById(\'deleteTaskModal' + ${task.id} + '\').style.display=\'none\''">
                             Annuler
                         </button>
                     </form>

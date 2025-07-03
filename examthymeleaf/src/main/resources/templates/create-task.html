@@ -1,36 +1,41 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer une tâche</title>
-</head>
-<body>
-<div th:replace="layout :: layout(~{::content})">
-    <div th:fragment="content">
-        <h1>Créer une tâche</h1>
-        <form th:action="@{/tasks/create}" method="post">
-            <div>
-                <label for="title">Titre :</label>
-                <input type="text" id="title" name="title" required>
-            </div>
-            <div>
-                <label for="projectId">Projet :</label>
-                <input type="text" id="projectId" name="projectId" th:value="${project.id}" readonly>
-            </div>
-            <div>
-                <label for="assigneeId">Assigné à :</label>
-                <select id="assigneeId" name="assigneeId">
-                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
-                </select>
-            </div>
-            <div th:if="${error}">
-                <span th:text="${error}" style="color:red;"></span>
-            </div>
-            <button type="submit">Créer</button>
-        </form>
-        <a th:href="@{/projects/{id}(id=${project.id})}">Retour au projet</a>
+<div th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="mb-0">Créer une nouvelle tâche</h2>
+        </div>
+        
+        <div class="card-body">
+            <form th:action="@{/tasks/create}" method="post" class="needs-validation" novalidate>
+                <div class="form-group mb-3">
+                    <label for="name">Nom de la tâche:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label for="status">Statut:</label>
+                    <select id="status" name="status" class="form-select" required>
+                        <option th:each="status : ${T(com.humanbooster.examthymeleaf.model.TaskStatus).values()}" 
+                                th:value="${status}" 
+                                th:text="${status.displayName}"></option>
+                    </select>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label for="projectId">Projet:</label>
+                    <select id="projectId" name="projectId" class="form-select" required>
+                        <option th:each="project : ${projects}" 
+                                th:value="${project.id}" 
+                                th:text="${project.name}"></option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Créer la tâche</button>
+            </form>
+        </div>
     </div>
 </div>
-</body>
-</html>

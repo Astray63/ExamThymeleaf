@@ -1,118 +1,76 @@
 <div th:fragment="content" xmlns:th="http://www.thymeleaf.org">
-        <!-- Navigation -->
-        <nav>
-            <div>
-                <a href="/">
-                    Gestion de Tâches
-                </a>
-                <div>
-                    <a href="/users">
-                        Utilisateurs
-                    </a>
-                    <a href="/projects">
-                        Projets
-                    </a>
-                    <a href="/projects/create">
-                        Nouveau Projet
-                    </a>
-                </div>
-            </div>
-        </nav>
+    <!-- Hero Section -->
+    <div class="jumbotron bg-light p-5 rounded mb-4">
+        <h1 class="display-4">Gestion de Tâches</h1>
+        <p class="lead">Organisez vos projets et suivez vos tâches efficacement</p>
+    </div>
 
-        <div>
-            <!-- Messages Flash -->
-            <div th:if="${success}">
-                <span th:text="${success}"></span>
-            </div>
-            <div th:if="${error}">
-                <span th:text="${error}"></span>
-            </div>
-
-            <!-- Hero Section -->
-            <div>
-                <h1>
-                    Gestion de Tâches
-                </h1>
-                <p>
-                    Organisez vos projets et suivez vos tâches efficacement
-                </p>
-            </div>
-
-            <!-- Menu Principal -->
-            <div>
-                <div>
-                    <div>
-                        <div>
-                            <h4>Utilisateurs</h4>
-                            <p>Gérez les utilisateurs de votre application</p>
-                            <a href="/users">
-                                Voir les utilisateurs
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <div>
-                            <h4>Projets</h4>
-                            <p>Consultez et gérez tous vos projets</p>
-                            <a href="/projects">
-                                Voir les projets
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <div>
-                            <h4>Nouveau Projet</h4>
-                            <p>Créez un nouveau projet pour organiser vos tâches</p>
-                            <a href="/projects/create">
-                                Créer un projet
-                            </a>
-                        </div>
-                    </div>
+    <!-- Menu Principal -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Utilisateurs</h4>
+                    <p class="card-text">Gérez les utilisateurs de votre application</p>
+                    <a href="/users" class="btn btn-primary">Voir les utilisateurs</a>
                 </div>
             </div>
-
-            <!-- Statistiques -->
-            <div>
-                <div>
-                    <div>
-                        <h5>
-                            Statistiques
-                        </h5>
-                    </div>
-                    <div>
-                        <div>
-                            <div>
-                                <div>
-                                    <h3 th:text="${users != null ? #lists.size(users) : 0}">0</h3>
-                                    <small>Utilisateurs</small>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 th:text="${projects != null ? #lists.size(projects) : 0}">0</h3>
-                                <small>Projets</small>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Projets</h4>
+                    <p class="card-text">Consultez et gérez tous vos projets</p>
+                    <a href="/projects" class="btn btn-primary">Voir les projets</a>
                 </div>
-                <div>
-                    <div>
-                        <h5>
-                            Fonctionnalités
-                        </h5>
-                    </div>
-                    <div>
-                        <ul>
-                            <li>Gestion des utilisateurs</li>
-                            <li>Création de projets</li>
-                            <li>Suivi des tâches</li>
-                            <li>Changement de statut</li>
-                        </ul>
-                    </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Nouveau Projet</h4>
+                    <p class="card-text">Créez un nouveau projet pour organiser vos tâches</p>
+                    <a href="/create-project" class="btn btn-primary">Créer un projet</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Statistics and Features -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Statistiques</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-around text-center">
+                        <div>
+                            <h3 th:text="${users != null ? #lists.size(users) : 0}">0</h3>
+                            <small>Utilisateurs</small>
+                        </div>
+                        <div>
+                            <h3 th:text="${projects != null ? #lists.size(projects) : 0}">0</h3>
+                            <small>Projets</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Fonctionnalités</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Gestion des utilisateurs</li>
+                        <li class="list-group-item">Création de projets</li>
+                        <li class="list-group-item">Suivi des tâches</li>
+                        <li class="list-group-item">Changement de statut</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

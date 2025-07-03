@@ -35,6 +35,7 @@ public class Project {
         this.name = name; 
     }
     
+    
     public User getCreator() { 
         return creator; 
     }
