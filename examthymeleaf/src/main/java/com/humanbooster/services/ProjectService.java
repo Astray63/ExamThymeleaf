@@ -30,6 +30,9 @@ public class ProjectService {
 
     public void createProject(String name, Long creatorId) {
         User creator = userService.getUserById(creatorId);
+        if (creator == null) {
+            throw new IllegalArgumentException("Utilisateur créateur introuvable");
+        }
         Project project = new Project((long) (projects.size() + 1), name, creator);
         projects.add(project);
     }

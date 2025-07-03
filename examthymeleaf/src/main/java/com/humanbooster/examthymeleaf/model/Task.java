@@ -1,4 +1,4 @@
-// src/main/java/com/humanbooster/examthymeleaf/model/Task.java
+
 package com.humanbooster.examthymeleaf.model;
 
 public class Task {

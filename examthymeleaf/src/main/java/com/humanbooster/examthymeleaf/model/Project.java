@@ -1,4 +1,4 @@
-// src/main/java/com/humanbooster/examthymeleaf/model/Project.java
+
 package com.humanbooster.examthymeleaf.model;
 
 import java.util.List;

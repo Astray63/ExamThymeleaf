@@ -13,11 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ProjectController {
 
-    @GetMapping("/create-project")
-    public String showCreateForm() {
-        return "create-project";
-    }
-    
     private final ProjectService projectService;
     private final UserService userService;
 
@@ -51,6 +46,7 @@ public class ProjectController {
     @PostMapping("/projects/create")
     public String createProject(
         @RequestParam String name,
+        @RequestParam(required = false) String description,
         @RequestParam Long creatorId
     ) {
         try {
