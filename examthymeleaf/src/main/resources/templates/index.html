@@ -1,0 +1,118 @@
+<div th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+        <!-- Navigation -->
+        <nav>
+            <div>
+                <a href="/">
+                    Gestion de Tâches
+                </a>
+                <div>
+                    <a href="/users">
+                        Utilisateurs
+                    </a>
+                    <a href="/projects">
+                        Projets
+                    </a>
+                    <a href="/projects/create">
+                        Nouveau Projet
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div>
+            <!-- Messages Flash -->
+            <div th:if="${success}">
+                <span th:text="${success}"></span>
+            </div>
+            <div th:if="${error}">
+                <span th:text="${error}"></span>
+            </div>
+
+            <!-- Hero Section -->
+            <div>
+                <h1>
+                    Gestion de Tâches
+                </h1>
+                <p>
+                    Organisez vos projets et suivez vos tâches efficacement
+                </p>
+            </div>
+
+            <!-- Menu Principal -->
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <h4>Utilisateurs</h4>
+                            <p>Gérez les utilisateurs de votre application</p>
+                            <a href="/users">
+                                Voir les utilisateurs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>
+                            <h4>Projets</h4>
+                            <p>Consultez et gérez tous vos projets</p>
+                            <a href="/projects">
+                                Voir les projets
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>
+                            <h4>Nouveau Projet</h4>
+                            <p>Créez un nouveau projet pour organiser vos tâches</p>
+                            <a href="/projects/create">
+                                Créer un projet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistiques -->
+            <div>
+                <div>
+                    <div>
+                        <h5>
+                            Statistiques
+                        </h5>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <h3 th:text="${users != null ? #lists.size(users) : 0}">0</h3>
+                                    <small>Utilisateurs</small>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 th:text="${projects != null ? #lists.size(projects) : 0}">0</h3>
+                                <small>Projets</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h5>
+                            Fonctionnalités
+                        </h5>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Gestion des utilisateurs</li>
+                            <li>Création de projets</li>
+                            <li>Suivi des tâches</li>
+                            <li>Changement de statut</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

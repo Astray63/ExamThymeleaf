@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une tâche</title>
+</head>
+<body>
+<div th:replace="layout :: layout(~{::content})">
+    <div th:fragment="content">
+        <h1>Créer une tâche</h1>
+        <form th:action="@{/tasks/create}" method="post">
+            <div>
+                <label for="title">Titre :</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div>
+                <label for="projectId">Projet :</label>
+                <input type="text" id="projectId" name="projectId" th:value="${project.id}" readonly>
+            </div>
+            <div>
+                <label for="assigneeId">Assigné à :</label>
+                <select id="assigneeId" name="assigneeId">
+                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+                </select>
+            </div>
+            <div th:if="${error}">
+                <span th:text="${error}" style="color:red;"></span>
+            </div>
+            <button type="submit">Créer</button>
+        </form>
+        <a th:href="@{/projects/{id}(id=${project.id})}">Retour au projet</a>
+    </div>
+</div>
+</body>
+</html>
